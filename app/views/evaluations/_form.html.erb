@@ -1,0 +1,42 @@
+<%= form_with(model: evaluation, local: true) do |form| %>
+  <% if evaluation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(evaluation.errors.count, "error") %> prohibited this evaluation from being saved:</h2>
+
+      <ul>
+        <% evaluation.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="main-form">
+    <form id="survey-form">
+      <h1 id="title">Teammate Evaluation Form</h1>
+      <p id="description">This is a team member survey from: <b><%= @student.firstN %> <%= @student.lastN %></b></p>
+    <div class="field">
+      <%= form.label :score %>
+      <%= form.number_field :score %>
+    </div>
+
+    <div class="field">
+      <%= form.label :comment %>
+      <%= form.text_area :comment %>
+    </div>
+
+
+    <div class="field">
+      <%= form.label :project_id, :Project%>
+      <%= form.collection_select :project_id, @projects, :id, :projectName %>
+    </div>
+
+      <%=form.hidden_field :student_group_id, :value => @student.student_group_id%>
+      <%=form.hidden_field :student_id, :value => @studentId%>
+      <%=form.hidden_field :comment_student, :value => @commentStudentId%>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+    </form>
+  </div>
+<% end %>

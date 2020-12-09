@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Teammate Evaluation Form</title>
+</head>
+
+<body>
+  <% score = 0 %>
+  <div class="main-form">
+    <h1 id="title">Teammate Evaluation Form</h1>
+    <p id="description">This is a team member survey for: <b>Student Name</b></p>
+    <form id="survey-form">
+      <div class="radioButtons">
+        <p>Score this team member on their <u>communication</u> within the group:</p>
+        <input type="radio" name="Communication" id="1" value="1">
+        <label for="1">1</label>
+  
+        <input type="radio" name="Communication" id="2" value="2">
+        <label for="2">2</label>
+  
+        <input type="radio" name="Communication" id="3" value="3">
+        <label for="3">3</label>
+  
+        <input type="radio" name="Communication" id="4" value="4">
+        <label for="4">4</label>
+  
+        <input type="radio" name="Communication" id="5" value="5">
+        <label for="5">5</label>
+      </div>
+
+      <div class="radioButtons">
+        <p>Score this team member on their <u>contribution</u> to the group work:</p>
+        <input type="radio" name="Contribution" id="1" value="1">
+        <label for="1">1</label>
+  
+        <input type="radio" name="Contribution" id="2" value="2">
+        <label for="2">2</label>
+  
+        <input type="radio" name="Contribution" id="3" value="3">
+        <label for="3">3</label>
+  
+        <input type="radio" name="Contribution" id="4" value="4">
+        <label for="4">4</label>
+  
+        <input type="radio" name="Contribution" id="5" value="5">
+        <label for="5">5</label>
+      </div>
+
+      <div class="radioButtons">
+        <p>Score this team member on their <u>work quality</u>:</p>
+        <input type="radio" name="WorkQuality" id="1" value="1">
+        <label for="1">1</label>
+  
+        <input type="radio" name="WorkQuality" id="2" value="2">
+        <label for="2">2</label>
+  
+        <input type="radio" name="WorkQuality" id="3" value="3">
+        <label for="3">3</label>
+  
+        <input type="radio" name="WorkQuality" id="4" value="4">
+        <label for="4">4</label>
+  
+        <input type="radio" name="WorkQuality" id="5" value="5">
+        <label for="5">5</label>
+      </div>
+
+      <textarea name="message" id="message" cols="30" rows="5" placeholder ="Leave any additional comments for the professor here"></textarea>
+      <label for="message"></label>
+      <button type="submit" id="submit" >Submit</button>
+    </form>
+  </div>
+</body>
+</html>

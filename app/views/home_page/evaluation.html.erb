@@ -1,0 +1,30 @@
+<h1>Evaluations</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Score</th>
+    <th>Comment</th>
+    <th>Project</th>
+    <th>Group</th>
+    <th>Student</th>
+    <th>Comment on</th>
+    <th colspan="2"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% Evaluation.all.each do |evaluation| %>
+      <tr>
+        <td><%= evaluation.score %></td>
+        <td><%= evaluation.comment %></td>
+        <td><%= evaluation.project.projectName%>
+        <td><%= evaluation.student_group.group_name %></td>
+        <td><%= Student.find(evaluation.student_id).firstN %> <%= Student.find(evaluation.student_id).lastN %></td>
+        <td><%= Student.find(evaluation.comment_student).firstN %> <%= Student.find(evaluation.comment_student).lastN %></td>
+        <td><%= link_to 'Show', evaluation %></td>
+        <td><%= link_to 'Destroy', evaluation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% end %>
+  </tbody>
+
+</table>

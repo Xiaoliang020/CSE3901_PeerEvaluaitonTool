@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+<% if @student == nil %>
+  <h1>Your are still not added to student list by the instructor</h1>
+<% else %>
+  <h1>Summary-<%= @student.firstN %> <%= @student.lastN %></h1>
+  <div align="center">
+    <ul>
+      <li>
+        Five Teamwork Dimensions - <%= link_to "link", 'https://info.catme.org/features/catme-five-dimensions/' %>
+      </li>
+      <li>
+        Peer-to-peer comments - what to expect(<%= link_to "see training video", 'https://www.youtube.com/watch?v=TBWQrieed5o&feature=youtu.be' %>)
+      </li>
+    </ul>
+  </div>
+
+  <table>
+    <h2>All evaluations</h2>
+    <thead>
+      <tr>
+        <th>Score</th>
+        <th>Comment</th>
+        <th>Project</th>
+        <th>Group</th>
+        <th>Comment on</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @evaluations.each do |evaluation| %>
+        <% if evaluation.student_id == @student.id %>
+          <tr>
+            <td><%= evaluation.score %></td>
+            <td><%= evaluation.comment %></td>
+            <td><%= evaluation.project.projectName%>
+            <td><%= evaluation.student_group.group_name %></td>
+            <td><%= Student.find(evaluation.comment_student).firstN %> <%= Student.find(evaluation.comment_student).lastN %></td>
+            <td><%= link_to 'Show', evaluation %></td>
+            <td><%= link_to 'Edit', edit_evaluation_path(evaluation) %></td>
+            <td><%= link_to 'Destroy', evaluation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+  <table>
+    <h2>Select a teammate to evaluate</h2>
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Dot Number</th>
+        <th>Group Name</th>
+        <th colspan="1"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+    <% Student.all.select{|s| s.student_group.group_name == @student.student_group.group_name && s.id != @student.id }.each do |student|%>
+      <tr>
+        <td><%= student.firstN %></td>
+        <td><%= student.lastN %></td>
+        <td><%= student.dotNum %></td>
+        <td><%= student.student_group.group_name %></td>
+        <td><%= link_to 'Evaluate', new_evaluation_path(studentId:@student.id, commentId:student.id) %></td>
+      </tr>
+    <% end %>
+    </tbody>
+
+  </table>
+<br>
+
+  <div align="center" id="time">
+    <%= Time.new.ctime%>
+  </div>
+
+<% end %>

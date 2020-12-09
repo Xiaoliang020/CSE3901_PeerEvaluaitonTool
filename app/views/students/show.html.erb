@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First Name:</strong>
+  <%= @student.firstN %>
+</p>
+
+<p>
+  <strong>Last Name:</strong>
+  <%= @student.lastN %>
+</p>
+
+<p>
+  <strong>Dot Number:</strong>
+  <%= @student.dotNum %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= StudentGroup.find(@student.student_group_id).group_name %>
+</p>
+
+<%= link_to 'Edit', edit_student_path(@student) %> |
+<%= link_to 'Back', students_path %>

@@ -1,0 +1,43 @@
+<% @user = User.find(session[:user_id])%>
+<% @student = Student.find_by_user_id(@user.id) %>
+<% if @student == nil %>
+  <h1>Your are still not added to student list by the instructor</h1>
+<% else %>
+<h1>Summary-<%= @student.firstN %> <%= @student.lastN %></h1>
+<div align="center">
+  <ul>
+    <li>
+      Five Teamwork Dimensions - <%= link_to "link", 'https://info.catme.org/features/catme-five-dimensions/' %>
+    </li>
+    <li>
+      Peer-to-peer comments - what to expect(<%= link_to "see training video", 'https://www.youtube.com/watch?v=TBWQrieed5o&feature=youtu.be' %>)
+    </li>
+  </ul>
+</div>
+
+<table id="survey" align="center">
+  <thead>
+    <tr>
+      <th>Team</th>
+      <th>Activity</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+<!--  Need student model first, and then implement information into the table-->
+  <tbody>
+      <% @project = Project.all %>
+      <% group_id = @student.student_group_id %>
+      <% @project.each do |project| %>
+      <tr>
+        <td><%= StudentGroup.find(group_id).group_name %></td>
+        <td><%= project.projectName %></td>
+        <td><%= link_to 'start evaluation', new_evaluation_path%></td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>
+
+<div align="center" id="time">
+  <%= Time.new.ctime%>
+</div>
+<% end %>

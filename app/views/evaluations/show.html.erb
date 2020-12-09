@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Score:</strong>
+  <%= @evaluation.score %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @evaluation.comment %>
+</p>
+
+<p>
+  <strong>Projects:</strong>
+  <%= @evaluation.project.projectName %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @evaluation.student_group.group_name %>
+</p>
+
+<p>
+  <strong>Peer Evaluation for:</strong>
+  <%= Student.find(@evaluation.comment_student).firstN %> <%= Student.find(@evaluation.comment_student).lastN %>
+</p>
+
+<%= link_to 'Edit', edit_evaluation_path(@evaluation) %> |
+<%= link_to 'Back', evaluations_path %>
